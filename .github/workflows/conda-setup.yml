@@ -1,0 +1,35 @@
+name: Setup Miniconda
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+jobs:
+  setup-conda:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v3
+        with:
+          auto-update-conda: true
+          activate-environment: buildenv
+          python-version: "3.12"
+          
+      - name: Verify Conda Installation
+        run: |
+          conda info
+          conda list
+
+      - name: Install Dependencies
+        run: |
+          conda install conda-build conda-verify
+
+      - name: Run conda-build
+        run: |
+          conda build -c conda-forge --error-overlinking .
+

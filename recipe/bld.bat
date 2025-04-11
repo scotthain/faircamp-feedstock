@@ -1,5 +1,7 @@
 echo "Hello, world!"
 
+REM TODO: make windows happen
+
 set FAIRCAMP_VERSION=1.2.0
 set FAIRCAMP_SHA256=sha256:1234567890
 

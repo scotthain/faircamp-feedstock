@@ -21,12 +21,14 @@ requirements:
     - libvips >=8.13.3 # [linux]
     - glib
     - cmake
+    - libgcc
   host:
-    - python
+    - python >=3.11
     - libopus
     - libvips >=8.13.3 # [linux]
   run:
     - libglib
+    - libgcc
 
   commands:
     - faircamp --version
