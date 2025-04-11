@@ -27,7 +27,8 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          conda install -c defaults conda-build conda-verify
+          conda create -n buildenv python=3.11 conda-build conda-verify
+          conda activate buildenv
 
       - name: Run conda-build
         run: |
