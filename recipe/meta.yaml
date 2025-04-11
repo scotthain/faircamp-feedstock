@@ -1,0 +1,47 @@
+{% set name = "faircamp" %}
+{% set version = "1.2.0" %}
+
+package:
+  name: {{ name|lower }}
+  version: {{ version }}
+
+source:
+  url: https://codeberg.org/simonrepp/{{ name }}/archive/{{ version }}.tar.gz
+  # sha256: 4AECD8EA0B9A975FD8880AC75829D3F8611ABD853A0BF40512B7E8CEC450D2C8
+
+build:
+  number: 0
+  skip: true  # [win]
+
+requirements:
+  build:
+    - {{ compiler('rust') }}
+    - ffmpeg
+    - libopus
+    - libvips >=8.13.3 # [linux]
+    - glib
+    - cmake
+  host:
+    - python
+    - libopus
+    - libvips >=8.13.3 # [linux]
+  run:
+    - libglib
+
+  commands:
+    - faircamp --version
+
+about:
+  home: https://codeberg.org/simonrepp/faircamp
+  license: AGPL-3.0-or-later
+  license_family: AGPL
+  summary: 'A static site generator for audio producers'
+  description: |
+    Faircamp is a static site generator specifically designed for audio producers.
+    It creates beautiful, responsive websites for your music releases with minimal effort.
+  doc_url: https://codeberg.org/simonrepp/faircamp/wiki
+  dev_url: https://codeberg.org/simonrepp/faircamp
+
+extra:
+  recipe-maintainers:
+    - scotthain
